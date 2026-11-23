@@ -11,6 +11,7 @@ from urllib.parse import urlencode
 import aiohttp
 
 from backend.configuration.settings import Settings, settings
+from backend.codeforces.utils.metrics import calculate_contest_metrics
 from backend.codeforces.utils.parsers import parse_submissions
 from backend.interfaces.kv_storage import KVStorage
 
@@ -29,13 +30,13 @@ class CodeforcesClient:
     def __init__(self, app_settings: Settings = settings) -> None:
         self._settings = app_settings
 
-    async def get_submissions(self, contest_id: int, count: int = 20) -> list[dict[str, Any]] | None:
+    async def get_submissions(self, contest_id: int, count: int = 1000) -> list[dict[str, Any]] | None:
         payload = await self._request(
             "contest.status", {"contestId": contest_id, "from": 1, "count": count}
         )
         return parse_submissions(payload) if payload else None
 
-    async def get_standings(self, contest_id: int, count: int = 50) -> dict[str, Any] | None:
+    async def get_standings(self, contest_id: int, count: int = 500) -> dict[str, Any] | None:
         return await self._request(
             "contest.standings",
             {"contestId": contest_id, "from": 1, "count": count, "asManager": "false"},
@@ -100,7 +101,17 @@ class CodeforcesFetcher:
                 await self._set_json(CacheKey.SUBMISSIONS, submissions)
             if standings is not None:
                 await self._set_json(CacheKey.STANDINGS, standings)
-                await self._set_json(CacheKey.STATISTICS, self._calculate_statistics(standings))
+
+            cached_submissions = (
+                submissions if submissions is not None else await self.get_cached_submissions()
+            )
+            cached_standings = (
+                standings if standings is not None else await self.get_cached_standings()
+            )
+
+            if cached_submissions is not None or cached_standings is not None:
+                stats = self._calculate_statistics(cached_standings, cached_submissions)
+                await self._set_json(CacheKey.STATISTICS, stats)
         except Exception:
             logger.exception("Could not refresh Codeforces cache")
 
@@ -110,7 +121,7 @@ class CodeforcesFetcher:
     async def get_cached_standings(self) -> dict[str, Any] | None:
         return await self._get_json(CacheKey.STANDINGS)
 
-    async def get_cached_statistics(self) -> dict[str, int] | None:
+    async def get_cached_statistics(self) -> dict[str, Any] | None:
         return await self._get_json(CacheKey.STATISTICS)
 
     async def _get_json(self, key: CacheKey) -> Any | None:
@@ -121,13 +132,8 @@ class CodeforcesFetcher:
         await self._storage.set(key, json.dumps(value, ensure_ascii=False))
 
     @staticmethod
-    def _calculate_statistics(standings: dict[str, Any]) -> dict[str, int]:
-        solved = 0
-        submissions = 0
-        for row in standings.get("result", {}).get("rows", []):
-            for result in row.get("problemResults", []):
-                if result.get("points") == 1:
-                    solved += 1
-                    submissions += 1
-                submissions += result.get("rejectedAttemptCount", 0)
-        return {"problemsSolved": solved, "submissionsMade": submissions}
+    def _calculate_statistics(
+        standings: dict[str, Any] | None = None,
+        submissions: list[dict[str, Any]] | None = None,
+    ) -> dict[str, Any]:
+        return calculate_contest_metrics(standings, submissions)

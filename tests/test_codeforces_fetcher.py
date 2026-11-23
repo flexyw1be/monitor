@@ -48,7 +48,16 @@ async def test_refresh_caches_data_and_statistics() -> None:
     await fetcher.refresh_all(42)
 
     assert await fetcher.get_cached_submissions() == [{"id": 1, "teamHandle": "team"}]
-    assert await fetcher.get_cached_statistics() == {"problemsSolved": 1, "submissionsMade": 4}
+    stats = await fetcher.get_cached_statistics()
+    assert stats is not None
+    assert stats["problemsSolved"] == 1
+    assert stats["submissionsMade"] == 4
+    assert stats["totalSubmissions"] == 4
+    assert stats["verdicts"]["accepted"] == 1
+    assert stats["verdicts"]["rejected"] == 3
+    assert stats["verdicts"]["acceptedPercentage"] == 25.0
+    assert stats["verdicts"]["rejectedPercentage"] == 75.0
+    assert len(stats["problems"]) == 2
 
 
 async def test_refresh_skips_an_unconfigured_contest() -> None:
