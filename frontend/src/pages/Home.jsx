@@ -11,31 +11,14 @@ const formatTarget = (value) => {
 
 function Home({ staffData }) {
   const fallbackRef = useRef(
-    dayjs().add(2, "hour").format("YYYY-MM-DDTHH:mm:ss")
+    dayjs("2026-12-05T15:00:00").isValid()
+      ? "2026-12-05T15:00:00"
+      : dayjs().add(2, "hour").format("YYYY-MM-DDTHH:mm:ss")
   );
 
   const targetDate =
     formatTarget(staffData?.pulse_timer_end_time) ?? fallbackRef.current;
   const titleRef = useRef(null);
-
-  /* const qrLinks = [
-  {
-    label: "Сайт",
-    url: "https://hackit-olimp.tpu.ru/",
-  },
-  {
-    label: "Правила",
-    url: "https://docs.google.com/document/d/1nIv54frEh5BJ3CB9Klvn7EJYuycPNt3FndEh9EPhSfg/edit?usp=sharing",
-  },
-  {
-    label: "Вконтакте",
-    url: "https://vk.me/join/MvJMnmmWyp/LaGSxrAVEielTyMouW2COIVw=",
-  },
-  {
-    label: "Telegram",
-    url: "https://t.me/itr_tpu_hackit",
-  },
-]; */
 
   return (
     <div className="page home">
@@ -47,13 +30,13 @@ function Home({ staffData }) {
             <div className="title" ref={titleRef}>HackIT</div>
 
             <div className="title2">
-              Командная олимпиада ИШИТР ТПУ по программированию
+              Командная олимпиада по программированию
             </div>
 
-            <div className="title2">Региональный этап</div>
+            <div className="stage-badge">Региональный этап</div>
 
             <div className="title3">
-              Россия, Томск, НТБ ТПУ. 16 мая 2026 г.
+              Россия, Томск, НТБ ТПУ • 5 декабря 2026 г.
             </div>
           </div>
 
@@ -61,23 +44,6 @@ function Home({ staffData }) {
             <div className="timer-wrap">
               <CountdownTimer targetDate={targetDate} />
             </div>
-
-            {/* <div className="qr-row">
-              {qrLinks.map((item) => (
-                <div className="qr-card" key={item.url}>
-                  <QRCodeSVG
-                    value={item.url}
-                    size={198}
-                    bgColor="transparent"
-                    fgColor="#111111"
-                    level="H"
-                    includeMargin={false}
-                  />
-
-                  <div className="qr-label">{item.label}</div>
-                </div>
-              ))}
-            </div> */}
           </div>
         </div>
       </div>

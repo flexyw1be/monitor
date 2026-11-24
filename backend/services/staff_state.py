@@ -28,10 +28,10 @@ class StaffState:
 
     @classmethod
     def default(cls) -> "StaffState":
-        default_time = (datetime.now() + timedelta(hours=2)).strftime(DATE_FORMAT)
+        default_time = "2026-12-05 15:00:00"
         return cls(
-            header="Hack IT",
-            desc="Пятая олимпиада по программированию ИШИТР ТПУ",
+            header="ХакИТ",
+            desc="Региональный этап олимпиады по программированию",
             page=0,
             time_start=default_time,
             timer_end_time=default_time,

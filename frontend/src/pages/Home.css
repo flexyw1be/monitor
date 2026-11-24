@@ -1,9 +1,9 @@
 .page.home {
   align-items: center;
   background:
-    radial-gradient(ellipse at 10% 8%, rgba(30, 54, 99, .28), transparent 38%),
-    radial-gradient(ellipse at 86% 0%, rgba(35, 58, 105, .16), transparent 36%),
-    linear-gradient(150deg, #01030a 0%, #040817 48%, #080f20 100%);
+    radial-gradient(ellipse at 15% 15%, #254cfc 0%, transparent 45%),
+    radial-gradient(ellipse at 85% 85%, #0e27b5 0%, transparent 50%),
+    linear-gradient(135deg, #102ed0 0%, #1333e0 50%, #0c239d 100%);
   display: flex;
   justify-content: center;
   min-height: 100vh;
@@ -34,18 +34,18 @@
   max-height: calc(100vh - 40px);
   pointer-events: none;
   position: relative;
-  width: min(500px, calc(100vw - 40px));
+  width: min(520px, calc(100vw - 40px));
   z-index: 2;
 }
 
 .glass-panel {
   backdrop-filter: blur(20px);
-  background: rgba(4, 11, 27, .6);
-  border: 1px solid rgba(211, 231, 255, .25);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 26px;
-  box-shadow: 0 22px 70px rgba(0, 0, 0, .52), inset 0 1px 0 rgba(255, 255, 255, .16);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.35);
   box-sizing: border-box;
-  color: white;
+  color: #ffffff;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -63,28 +63,42 @@
 }
 
 .title {
-  color: #e6f1ff;
+  color: #ffffff;
   font-size: clamp(68px, 8vw, 112px);
   font-style: italic;
   font-weight: 900;
   letter-spacing: -.05em;
   line-height: .88;
-  text-shadow: 0 0 26px rgba(134, 182, 255, .48);
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
 }
 
 .title2 {
-  color: #eef6ff;
+  color: #ffffff;
   font-size: clamp(17px, 2vw, 24px);
-  font-weight: 300;
-  line-height: 1.2;
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.stage-badge {
+  display: inline-block;
+  padding: 5px 14px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  width: fit-content;
 }
 
 .title3 {
-  color: #bfdbfe;
+  color: rgba(255, 255, 255, 0.85);
   font-size: clamp(13px, 1.4vw, 17px);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.35;
-  margin-top: 8px;
+  margin-top: 4px;
 }
 
 .panel-bottom {
@@ -102,20 +116,20 @@
 }
 
 .glass-panel .timer-demo {
-  color: #f8fbff;
+  color: #ffffff;
   font-size: clamp(50px, 8vw, 102px) !important;
   font-style: normal;
   font-weight: 300;
   letter-spacing: 0;
   line-height: .9;
   max-width: 100%;
-  text-shadow: 0 0 18px rgba(196, 224, 255, .48);
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   white-space: nowrap;
 }
 
 .glass-panel .timer-ms {
   font-size: .45em;
-  opacity: .7;
+  opacity: .8;
 }
 
 @media (max-width: 640px) {

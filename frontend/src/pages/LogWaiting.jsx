@@ -12,13 +12,12 @@ const gifs = [
 ]
 
 function LogWaiting() {
-
   const [index, setIndex] = useState(0)
 
   useEffect(() => {
     const id = setInterval(() => {
       setIndex((prev) => (prev + 1) % gifs.length)
-    }, 5000) 
+    }, 5000)
     return () => clearInterval(id)
   }, [])
 
@@ -26,10 +25,10 @@ function LogWaiting() {
     <div className="page logwaiting">
       <div className="logwaiting__column logwaiting__column--left">
         <div className="logwaiting__container">
+          <div className="logwaiting__badge">ХакИТ • Региональный этап • 5 декабря 2026</div>
           <h1 className="logwaiting__title">Контест завершен. Спасибо!</h1>
-          {/* <h1 className="logwaiting__title">Спасибо за участие!</h1> */}
           <p className="logwaiting__subtitle">
-            Готовим сертификаты и логи соревнования для разморозки таблицы
+            Готовим сертификаты и логи соревнования для разморозки таблицы результатов
           </p>
         </div>
       </div>
@@ -43,4 +42,3 @@ function LogWaiting() {
 }
 
 export default LogWaiting
-

@@ -1,0 +1,176 @@
+.page.metricspage {
+  min-height: 100vh;
+  width: 100vw;
+  background-color: #1333e0;
+  color: #ffffff;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  user-select: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 3.5vh 4vw;
+  overflow: hidden;
+}
+
+.metricspage__container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.metricspage__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 2vh;
+}
+
+.metricspage__brand {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(1.2rem, 2vw, 1.7rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+}
+
+.metricspage__category {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.metricspage__divider {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.28);
+}
+
+.metricspage__tag-row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 2vh;
+}
+
+.metricspage__tag {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(0.95rem, 1.4vw, 1.25rem);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.metricspage__center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2vh 0;
+}
+
+.metricspage__number {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(6.5rem, 16vw, 16rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  color: #ffffff;
+  text-shadow: 0 8px 40px rgba(0, 0, 0, 0.18);
+  animation: metric-fade-in 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.metricspage__label {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(1.8rem, 3.8vw, 3.6rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: #ffffff;
+  margin-top: 2vh;
+  animation: metric-fade-in 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes metric-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.metricspage__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: 2vh;
+}
+
+.metricspage__footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vh;
+}
+
+.metricspage__quote {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(0.95rem, 1.4vw, 1.3rem);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.metricspage__pagination-dashes {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.metricspage__dash {
+  width: clamp(28px, 3.5vw, 44px);
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.28);
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.25s ease;
+}
+
+.metricspage__dash:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.metricspage__dash--active {
+  background-color: #c8ff54 !important;
+  box-shadow: 0 0 10px rgba(200, 255, 84, 0.8);
+}
+
+.metricspage__counter {
+  font-family: 'Menlo', 'Courier New', monospace;
+  font-size: clamp(1rem, 1.5vw, 1.35rem);
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 768px) {
+  .page.metricspage {
+    padding: 2.5vh 5vw;
+  }
+  .metricspage__footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5vh;
+  }
+}

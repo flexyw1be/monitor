@@ -365,7 +365,11 @@ function StandingsTable({ problems, rows, error, submissions }) {
 
 
 function PulsePage({ staffData }) {
-  const fallbackRef = useRef(dayjs().add(2, 'hour').format('YYYY-MM-DDTHH:mm:ss'));
+  const fallbackRef = useRef(
+    dayjs('2026-12-05T15:00:00').isValid()
+      ? '2026-12-05T15:00:00'
+      : dayjs().add(2, 'hour').format('YYYY-MM-DDTHH:mm:ss')
+  );
   const targetDate = formatTarget(staffData?.pulse_timer_end_time) ?? fallbackRef.current;
   
   const [submissions, setSubmissions] = useState([]);
@@ -376,6 +380,7 @@ function PulsePage({ staffData }) {
   const knownIdsRef = useRef(new Set());
   const [problemsSolved, setProblemsSolved] = useState(0);
   const [submissionsMade, setSubmissionsMade] = useState(0);
+  const [statistics, setStatistics] = useState(null);
 
 
   useEffect(() => {
@@ -487,6 +492,7 @@ function PulsePage({ staffData }) {
 
             setProblemsSolved(problemsSolved);
             setSubmissionsMade(submissionsMade);
+            setStatistics(container);
             setStatisticsError(null);
             setStatisticsLoading(false);
 
@@ -517,13 +523,27 @@ function PulsePage({ staffData }) {
           <CountdownTimer targetDate={targetDate} />
         </div>
         <div className="pulsepage__block pulsepage__block--top-right">
+          <div className="pulsepage__header-tag">
+            <span>ХакИТ • Региональный этап</span>
+            <span className="pulsepage__header-date">05.12.2026</span>
+          </div>
           <div className="pulsepage__stats">
             <div className="pulsepage__stats-item">
-                <span>Решено: {problemsSolved}</span>
+              <span className="pulsepage__stats-label">Решено</span>
+              <span className="pulsepage__stats-value">{problemsSolved}</span>
             </div>
             <div className="pulsepage__stats-item">
-                <span>Попыток: {submissionsMade}</span>
+              <span className="pulsepage__stats-label">Попыток</span>
+              <span className="pulsepage__stats-value">{submissionsMade}</span>
             </div>
+            {statistics?.verdicts?.acceptedPercentage != null && (
+              <div className="pulsepage__stats-item">
+                <span className="pulsepage__stats-label">Accepted</span>
+                <span className="pulsepage__stats-value pulsepage__stats-value--ac">
+                  {statistics.verdicts.acceptedPercentage}%
+                </span>
+              </div>
+            )}
           </div>
         </div>
         <div className="pulsepage__block pulsepage__block--bottom-left">

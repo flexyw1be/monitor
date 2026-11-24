@@ -6,6 +6,7 @@ import NewPage from './pages/NewPage'
 import ZeroPage from './pages/ZeroPage'
 import PulsePage from './pages/PulsePage'
 import LogWaiting from './pages/LogWaiting'
+import MetricsPage from './pages/MetricsPage'
 import UnfreezePage from './pages/UnfreezePage'
 import AdminPage from './pages/AdminPage'
 import { getStaffUrl } from './config'
@@ -19,6 +20,7 @@ const pageIndexMap = {
   3: 'newpage',
   4: 'pulsepage',
   5: 'logwaiting',
+  6: 'metrics',
   7: 'unfreeze',
   8: 'admin',
 }
@@ -76,6 +78,8 @@ function ProtectedApp() {
         return <PulsePage staffData={staffData} />
       case 'logwaiting':
         return <LogWaiting />
+      case 'metrics':
+        return <MetricsPage />
       case 'unfreeze':
         return <UnfreezePage />
       case 'admin':
@@ -130,6 +134,12 @@ function ProtectedApp() {
           className={currentPage === 'logwaiting' ? 'active' : ''}
         >
           5
+        </button>
+        <button 
+          onClick={() => setCurrentPage('metrics')}
+          className={currentPage === 'metrics' ? 'active' : ''}
+        >
+          6
         </button>
         <button 
           onClick={() => setCurrentPage('unfreeze')}

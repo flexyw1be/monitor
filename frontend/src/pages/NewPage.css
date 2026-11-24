@@ -1,5 +1,5 @@
 html, body {
-  background: #000000 !important;
+  background: #1333e0 !important;
   min-height: 100vh;
   min-width: 100vw;
   height: 100%;
@@ -8,7 +8,6 @@ html, body {
   padding: 0;
   overflow-y: scroll;
   overflow-x: hidden;
-  /* overflow: hidden; */
 }
 
 body::-webkit-scrollbar {
@@ -17,38 +16,30 @@ body::-webkit-scrollbar {
 
 .page.newpage {
   padding: 0;
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
   box-sizing: border-box;
-  background: #000000;
+  background: #1333e0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  /* overflow: auto; 
-  scrollbar-width: none; 
-  -ms-overflow-style: none;  */
-} 
-
-/* .page.newpage::-webkit-scrollbar {
-  width: 0px;
-  background: transparent;
-} */
+}
 
 .page.newpage h1 {
   font-size: 2.5em;
-  color: #be07c5;
+  color: #ffffff;
   margin-bottom: 1.5rem;
 }
 
 .page.main {
-  background: #000000;
+  background: #1333e0;
 }
 
 .page.newpage p {
   font-size: 1.2em;
-  color: #222;
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .timer-demo, .timer-demo.dot-final {
@@ -68,6 +59,7 @@ body::-webkit-scrollbar {
   font-size: 0.67em;
   line-height: 1;
   vertical-align: baseline;
+  opacity: 0.85;
 }
 
 .timer-demo.dot-final {
@@ -84,4 +76,3 @@ body::-webkit-scrollbar {
   margin-top: 0;
   margin-bottom: 0;
 }
-
