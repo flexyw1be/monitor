@@ -35,7 +35,7 @@ function Home({ staffData }) {
             Национальный исследовательский Томский политехнический университет
           </div>
 
-          <h1 className="home__title">HackIT 2026</h1>
+          <h1 className="home__title">ХакИТ 2026</h1>
 
           <div className="home__subtitle">
             Командная олимпиада по спортивному программированию

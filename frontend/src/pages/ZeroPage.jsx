@@ -7,12 +7,12 @@ function ZeroPage({ staffData }) {
       <div className="zeropage__content">
         <div className="zeropage__line" />
         <div className="zeropage__text">
-          <div className="monitor">monitor HackIT</div>
+          <div className="monitor">Монитор ХакИТ</div>
           <div className="catch">05.12.2026</div>
         </div>
       </div>
       <div className="zeropage__subtitle">
-        <p>Региональный этап • 5 декабря 2026</p>
+        <p>5 декабря 2026</p>
       </div>
 
       <div className="zeropage__loader">

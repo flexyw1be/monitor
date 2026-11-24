@@ -151,31 +151,18 @@ function SubmissionCard({ submission }) {
   }, [submission.receivedAt]);
 
   const getVerdictColor = (verdict) => {
-    switch (verdict) {
-      case 'TESTING':
-        return '#fbc02d';
-      case 'OK':
-        return '#4caf50';
-      case 'WRONG_ANSWER':
-        return '#f44336';
-      case 'TIME_LIMIT_EXCEEDED':
-        return '#ff9800';
-      case 'RUNTIME_ERROR':
-        return '#9c27b0';
-      case 'COMPILATION_ERROR':
-        return '#2196f3';
-      default:
-        return '#757575';
-    }
+    if (verdict === 'OK') return '#ffffff';
+    if (verdict === 'TESTING') return 'rgba(255, 255, 255, 0.9)';
+    return 'rgba(255, 255, 255, 0.7)';
   };
 
   const getCardBackgroundColor = (verdict) => {
     if (verdict === 'OK') {
-      return 'rgba(76, 175, 80, 0.2)';
+      return 'rgba(255, 255, 255, 0.16)';
     } else if (verdict === 'TESTING') {
-      return 'rgba(251, 192, 45, 0.12)';
+      return 'rgba(255, 255, 255, 0.1)';
     } else {
-      return 'rgba(244, 67, 54, 0.2)';
+      return 'rgba(255, 255, 255, 0.05)';
     }
   };
 
@@ -524,7 +511,7 @@ function PulsePage({ staffData }) {
         </div>
         <div className="pulsepage__block pulsepage__block--top-right">
           <div className="pulsepage__header-tag">
-            <span>ХакИТ • Региональный этап</span>
+            <span>ХакИТ</span>
             <span className="pulsepage__header-date">05.12.2026</span>
           </div>
           <div className="pulsepage__stats">

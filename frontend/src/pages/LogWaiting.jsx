@@ -25,7 +25,7 @@ function LogWaiting() {
     <div className="page logwaiting">
       <div className="logwaiting__column logwaiting__column--left">
         <div className="logwaiting__container">
-          <div className="logwaiting__badge">ХакИТ • Региональный этап • 5 декабря 2026</div>
+          <div className="logwaiting__badge">ХакИТ • 5 декабря 2026</div>
           <h1 className="logwaiting__title">Контест завершен. Спасибо!</h1>
           <p className="logwaiting__subtitle">
             Готовим сертификаты и логи соревнования для разморозки таблицы результатов

@@ -73,9 +73,9 @@ body {
 }
 
 .navbar button.toggle.active {
-  background-color: #c8ff54;
-  color: #0c24a3;
-  border-color: #c8ff54;
+  background-color: #ffffff;
+  color: #1333e0;
+  border-color: #ffffff;
   font-weight: 700;
 }
 

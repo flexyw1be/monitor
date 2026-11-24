@@ -152,8 +152,8 @@
 }
 
 .metricspage__dash--active {
-  background-color: #c8ff54 !important;
-  box-shadow: 0 0 10px rgba(200, 255, 84, 0.8);
+  background-color: #ffffff !important;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
 }
 
 .metricspage__counter {
