@@ -1,54 +1,81 @@
-import CountdownTimer from "../components/CountdownTimer";
-import WinterStorm from "../components/WinterStorm";
-import "./Home.css";
-import dayjs from "dayjs";
-import { useRef } from "react";
+import React, { useRef } from 'react';
+import CountdownTimer from '../components/CountdownTimer';
+import './Home.css';
+import dayjs from 'dayjs';
 
 const formatTarget = (value) => {
   if (!value) return null;
-  return value.replace(" ", "T");
+  return value.replace(' ', 'T');
 };
 
 function Home({ staffData }) {
   const fallbackRef = useRef(
-    dayjs("2026-12-05T15:00:00").isValid()
-      ? "2026-12-05T15:00:00"
-      : dayjs().add(2, "hour").format("YYYY-MM-DDTHH:mm:ss")
+    dayjs('2026-12-05T15:00:00').isValid()
+      ? '2026-12-05T15:00:00'
+      : dayjs().add(2, 'hour').format('YYYY-MM-DDTHH:mm:ss')
   );
 
   const targetDate =
     formatTarget(staffData?.pulse_timer_end_time) ?? fallbackRef.current;
-  const titleRef = useRef(null);
 
   return (
     <div className="page home">
-      <WinterStorm titleRef={titleRef} />
+      <div className="home__container">
+        {/* Top Header */}
+        <header className="home__header">
+          <div className="home__brand">ХакИТ 2026</div>
+          <div className="home__tag">ТПУ • ИШИТР</div>
+        </header>
 
-      <div className="side-ui">
-        <div className="glass-panel">
-          <div className="panel-content">
-            <div className="title" ref={titleRef}>HackIT</div>
+        <div className="home__divider" />
 
-            <div className="title2">
-              Командная олимпиада по программированию
-            </div>
-
-            <div className="stage-badge">Региональный этап</div>
-
-            <div className="title3">
-              Россия, Томск, НТБ ТПУ • 5 декабря 2026 г.
-            </div>
+        {/* Hero Section */}
+        <main className="home__hero">
+          <div className="home__org">
+            Национальный исследовательский Томский политехнический университет
           </div>
 
-          <div className="panel-bottom">
-            <div className="timer-wrap">
+          <h1 className="home__title">HackIT 2026</h1>
+
+          <div className="home__subtitle">
+            Командная олимпиада по спортивному программированию
+          </div>
+
+          <div className="home__meta-row">
+            <span className="home__meta-item">
+              Россия, Томск, Научно-техническая библиотека ТПУ
+            </span>
+            <span className="home__meta-dot">•</span>
+            <span className="home__meta-item">
+              5 декабря 2026 года
+            </span>
+          </div>
+
+          {/* Official Timer Box */}
+          <div className="home__timer-card">
+            <div className="home__timer-label">ВРЕМЯ ДО ЗАВЕРШЕНИЯ ТУРА</div>
+            <div className="home__timer-display">
               <CountdownTimer targetDate={targetDate} />
             </div>
           </div>
-        </div>
-      </div>
+        </main>
 
-      <div className="home-scroll-space" aria-hidden="true" />
+        <div className="home__divider" />
+
+        {/* Footer */}
+        <footer className="home__footer">
+          <div className="home__footer-rules">
+            <span>Регламент ICPC</span>
+            <span className="home__footer-sep">/</span>
+            <span>5 часов</span>
+            <span className="home__footer-sep">/</span>
+            <span>Заморозка таблицы за 1 час до конца</span>
+          </div>
+          <div className="home__footer-link">
+            hackit-olimp.tpu.ru
+          </div>
+        </footer>
+      </div>
     </div>
   );
 }

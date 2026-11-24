@@ -39,6 +39,17 @@ function MetricsPage() {
   const topLangName = topLangEntry ? topLangEntry[0] : 'C++';
   const topLangPct = topLangEntry ? `${topLangEntry[1].percentage}%` : '58%';
 
+  // Find most popular problem from stats
+  let popularProblem = 'A';
+  let popularProblemRate = '85%';
+  if (Array.isArray(stats?.problems) && stats.problems.length > 0) {
+    const sorted = [...stats.problems].sort((a, b) => (b.totalSubmissions || 0) - (a.totalSubmissions || 0));
+    if (sorted[0]) {
+      popularProblem = sorted[0].index || 'A';
+      popularProblemRate = sorted[0].solveRate != null ? `${sorted[0].solveRate}%` : '85%';
+    }
+  }
+
   const slides = [
     {
       category: 'РЕШЕНИЯ',
@@ -48,32 +59,46 @@ function MetricsPage() {
       quote: 'Каждая попытка — шаг к Accepted.',
     },
     {
-      category: 'РЕЗУЛЬТАТЫ',
+      category: 'ПИТАНИЕ',
       tag: '02 / ФАКТ',
+      number: '112',
+      label: 'кусков пиццы съедено',
+      quote: 'Топливо для решения сложнейших алгоритмов и структур данных.',
+    },
+    {
+      category: 'РЕЗУЛЬТАТЫ',
+      tag: '03 / ФАКТ',
       number: solved,
       label: 'задач сдано командами',
       quote: 'ХакИТ • Региональный этап • 5 декабря 2026 г.',
     },
     {
       category: 'ТОЧНОСТЬ',
-      tag: '03 / ФАКТ',
+      tag: '04 / ФАКТ',
       number: acPercent,
-      label: 'успешных решений (Accepted)',
-      quote: 'Качество кода и точность алгоритмов.',
+      label: 'успешных попыток (Accepted)',
+      quote: 'Чистота алгоритмической мысли и точность реализации.',
     },
     {
       category: 'ЯЗЫКИ',
-      tag: '04 / ФАКТ',
+      tag: '05 / ФАКТ',
       number: topLangName,
       label: `лидер среди языков (${topLangPct})`,
-      quote: 'Выбор участников регионального этапа.',
+      quote: 'Выбор участников олимпиады на этом туре.',
+    },
+    {
+      category: 'ЗАДАЧИ',
+      tag: '06 / ФАКТ',
+      number: `Задача ${popularProblem}`,
+      label: `самая популярная задача (${popularProblemRate} сдали)`,
+      quote: 'Главная арена битвы за первые баллы в контесте.',
     },
     {
       category: 'КОНТЕСТ',
-      tag: '05 / ФАКТ',
+      tag: '07 / ФАКТ',
       number: teams,
-      label: 'команд в турнирной таблице',
-      quote: 'ХакИТ 2026 • 5 декабря • Томск',
+      label: 'команд борются за кубок',
+      quote: 'Томский политехнический университет • 2026',
     },
   ];
 
