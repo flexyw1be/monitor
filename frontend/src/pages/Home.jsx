@@ -43,10 +43,6 @@ function Home({ staffData }) {
 
           <div className="home__meta-row">
             <span className="home__meta-item">
-              Россия, Томск, Научно-техническая библиотека ТПУ
-            </span>
-            <span className="home__meta-dot">•</span>
-            <span className="home__meta-item">
               5 декабря 2026 года
             </span>
           </div>
@@ -59,22 +55,6 @@ function Home({ staffData }) {
             </div>
           </div>
         </main>
-
-        <div className="home__divider" />
-
-        {/* Footer */}
-        <footer className="home__footer">
-          <div className="home__footer-rules">
-            <span>Регламент ICPC</span>
-            <span className="home__footer-sep">/</span>
-            <span>5 часов</span>
-            <span className="home__footer-sep">/</span>
-            <span>Заморозка таблицы за 1 час до конца</span>
-          </div>
-          <div className="home__footer-link">
-            hackit-olimp.tpu.ru
-          </div>
-        </footer>
       </div>
     </div>
   );
